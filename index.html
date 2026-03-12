@@ -1,661 +1,289 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Hachi Smoke & Vape | Coming Soon</title>
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@600;700;800&family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Hachi Smoke & Vape | Coming Soon</title>
 
-  <style>
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-    }
+<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@600;700&family=Poppins:wght@300;400;500&display=swap" rel="stylesheet">
 
-    :root {
-      --gold: #d4af37;
-      --gold-light: #f7e7a8;
-      --gold-deep: #8f6a0a;
-      --bg1: #040404;
-      --bg2: #0b0b0b;
-      --glass: rgba(255, 255, 255, 0.05);
-      --border: rgba(255, 215, 100, 0.18);
-      --text: rgba(255,255,255,0.88);
-      --muted: rgba(255,255,255,0.62);
-      --danger: #ffb84d;
-    }
+<style>
 
-    body {
-      font-family: 'Poppins', sans-serif;
-      min-height: 100vh;
-      background:
-        radial-gradient(circle at 20% 20%, rgba(212,175,55,0.12), transparent 22%),
-        radial-gradient(circle at 80% 30%, rgba(212,175,55,0.08), transparent 24%),
-        radial-gradient(circle at 50% 85%, rgba(255,255,255,0.04), transparent 20%),
-        linear-gradient(145deg, var(--bg1), #000 45%, var(--bg2));
-      color: white;
-      overflow: hidden;
-      position: relative;
-    }
+*{margin:0;padding:0;box-sizing:border-box;}
 
-    body::before,
-    body::after {
-      content: "";
-      position: absolute;
-      width: 42vw;
-      height: 42vw;
-      border-radius: 50%;
-      filter: blur(90px);
-      opacity: 0.16;
-      z-index: 0;
-      animation: ambientMove 18s ease-in-out infinite alternate;
-    }
+body{
+font-family:'Poppins',sans-serif;
+min-height:100vh;
+background:linear-gradient(140deg,#020202,#000,#080808);
+color:white;
+overflow:hidden;
+position:relative;
+display:flex;
+align-items:center;
+justify-content:center;
+}
 
-    body::before {
-      top: -10%;
-      left: -10%;
-      background: rgba(212,175,55,0.25);
-    }
+/* glow background */
 
-    body::after {
-      bottom: -15%;
-      right: -10%;
-      background: rgba(255,210,120,0.16);
-      animation-duration: 22s;
-    }
+body::before{
+content:"";
+position:absolute;
+width:50vw;
+height:50vw;
+background:#d4af37;
+filter:blur(120px);
+opacity:.15;
+top:-20%;
+left:-20%;
+animation:floatGlow 18s infinite alternate ease-in-out;
+}
 
-    @keyframes ambientMove {
-      0% { transform: translate(0,0) scale(1); }
-      50% { transform: translate(30px,-25px) scale(1.07); }
-      100% { transform: translate(-20px,20px) scale(0.95); }
-    }
+@keyframes floatGlow{
+0%{transform:translate(0,0)}
+50%{transform:translate(60px,-40px)}
+100%{transform:translate(-40px,40px)}
+}
 
-    .smoke {
-      position: absolute;
-      inset: 0;
-      z-index: 1;
-      pointer-events: none;
-      overflow: hidden;
-    }
+/* smoke */
 
-    .smoke span {
-      position: absolute;
-      bottom: -250px;
-      border-radius: 50%;
-      background: radial-gradient(circle, rgba(255,255,255,0.11), rgba(255,255,255,0.03) 45%, transparent 72%);
-      filter: blur(18px);
-      animation: smokeRise linear infinite;
-    }
+.smoke span{
+position:absolute;
+bottom:-200px;
+background:radial-gradient(circle,rgba(255,255,255,.15),transparent 60%);
+border-radius:50%;
+filter:blur(15px);
+animation:smoke 20s linear infinite;
+}
 
-    .smoke span:nth-child(1) { width: 180px; height: 180px; left: 8%;  animation-duration: 18s; animation-delay: 0s; }
-    .smoke span:nth-child(2) { width: 280px; height: 280px; left: 18%; animation-duration: 24s; animation-delay: 4s; }
-    .smoke span:nth-child(3) { width: 220px; height: 220px; left: 42%; animation-duration: 20s; animation-delay: 2s; }
-    .smoke span:nth-child(4) { width: 320px; height: 320px; right: 20%; animation-duration: 26s; animation-delay: 6s; }
-    .smoke span:nth-child(5) { width: 200px; height: 200px; right: 8%; animation-duration: 17s; animation-delay: 1s; }
-    .smoke span:nth-child(6) { width: 260px; height: 260px; right: 35%; animation-duration: 22s; animation-delay: 3s; }
+.smoke span:nth-child(1){width:200px;height:200px;left:10%;animation-duration:18s;}
+.smoke span:nth-child(2){width:260px;height:260px;left:35%;animation-duration:22s;}
+.smoke span:nth-child(3){width:180px;height:180px;left:60%;animation-duration:20s;}
+.smoke span:nth-child(4){width:300px;height:300px;left:80%;animation-duration:25s;}
 
-    @keyframes smokeRise {
-      0% {
-        transform: translateY(0) translateX(0) scale(0.85);
-        opacity: 0;
-      }
-      15% {
-        opacity: 0.28;
-      }
-      50% {
-        transform: translateY(-38vh) translateX(30px) scale(1.02);
-        opacity: 0.18;
-      }
-      100% {
-        transform: translateY(-95vh) translateX(-30px) scale(1.22);
-        opacity: 0;
-      }
-    }
+@keyframes smoke{
+0%{transform:translateY(0);opacity:0}
+30%{opacity:.3}
+100%{transform:translateY(-120vh);opacity:0}
+}
 
-    .particles {
-      position: absolute;
-      inset: 0;
-      z-index: 1;
-      pointer-events: none;
-    }
+/* particles */
 
-    .particles span {
-      position: absolute;
-      width: 3px;
-      height: 3px;
-      border-radius: 50%;
-      background: rgba(255, 225, 140, 0.95);
-      box-shadow: 0 0 12px rgba(255, 215, 120, 0.8);
-      animation: sparkle 5s linear infinite;
-    }
+.particles span{
+position:absolute;
+width:3px;
+height:3px;
+background:#ffd977;
+border-radius:50%;
+box-shadow:0 0 8px #ffd977;
+animation:sparkle 6s infinite;
+}
 
-    .particles span:nth-child(1) { top: 12%; left: 14%; animation-delay: .2s; }
-    .particles span:nth-child(2) { top: 18%; left: 70%; animation-delay: 1.1s; }
-    .particles span:nth-child(3) { top: 27%; left: 48%; animation-delay: 1.8s; }
-    .particles span:nth-child(4) { top: 39%; left: 88%; animation-delay: 2.6s; }
-    .particles span:nth-child(5) { top: 62%; left: 16%; animation-delay: 3.2s; }
-    .particles span:nth-child(6) { top: 70%; left: 33%; animation-delay: 4.2s; }
-    .particles span:nth-child(7) { top: 76%; left: 76%; animation-delay: 2.9s; }
-    .particles span:nth-child(8) { top: 48%; left: 60%; animation-delay: 1.5s; }
-    .particles span:nth-child(9) { top: 24%; left: 84%; animation-delay: 4.8s; }
-    .particles span:nth-child(10){ top: 55%; left: 8%;  animation-delay: .8s; }
-    .particles span:nth-child(11){ top: 14%; left: 35%; animation-delay: 3.8s; }
-    .particles span:nth-child(12){ top: 82%; left: 58%; animation-delay: 2.1s; }
+.particles span:nth-child(1){top:15%;left:20%}
+.particles span:nth-child(2){top:30%;left:70%}
+.particles span:nth-child(3){top:50%;left:50%}
+.particles span:nth-child(4){top:80%;left:25%}
+.particles span:nth-child(5){top:60%;left:80%}
 
-    @keyframes sparkle {
-      0%, 100% {
-        opacity: 0.2;
-        transform: translateY(0) scale(1);
-      }
-      50% {
-        opacity: 1;
-        transform: translateY(-8px) scale(1.8);
-      }
-    }
+@keyframes sparkle{
+0%,100%{opacity:.3;transform:scale(1)}
+50%{opacity:1;transform:scale(1.6)}
+}
 
-    .page {
-      min-height: 100vh;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      position: relative;
-      z-index: 2;
-      padding: 30px 18px;
-    }
+/* card */
 
-    .card {
-      width: min(100%, 980px);
-      padding: 48px 38px;
-      border-radius: 28px;
-      background: linear-gradient(180deg, rgba(255,255,255,0.06), rgba(255,255,255,0.03));
-      border: 1px solid var(--border);
-      backdrop-filter: blur(16px);
-      box-shadow:
-        0 20px 60px rgba(0,0,0,0.45),
-        0 0 100px rgba(212,175,55,0.08),
-        inset 0 0 0 1px rgba(255,255,255,0.02);
-      text-align: center;
-      position: relative;
-      overflow: hidden;
-    }
+.card{
+position:relative;
+z-index:5;
+max-width:900px;
+padding:50px 40px;
+background:rgba(255,255,255,.04);
+border:1px solid rgba(255,215,100,.2);
+border-radius:25px;
+backdrop-filter:blur(10px);
+text-align:center;
+box-shadow:0 20px 60px rgba(0,0,0,.5);
+}
 
-    .card::before {
-      content: "";
-      position: absolute;
-      inset: 0;
-      background: linear-gradient(120deg, transparent 15%, rgba(255,255,255,0.05), transparent 85%);
-      transform: translateX(-120%);
-      animation: shine 8s linear infinite;
-    }
+/* logo */
 
-    @keyframes shine {
-      0% { transform: translateX(-120%); }
-      100% { transform: translateX(120%); }
-    }
+.logo{
+font-family:'Orbitron',sans-serif;
+font-size:70px;
+color:#ffd45c;
+text-shadow:
+0 1px 0 #b78612,
+0 2px 0 #a8770e,
+0 0 12px rgba(255,215,120,.7),
+0 0 40px rgba(255,200,100,.3);
+margin-bottom:15px;
+animation:logoGlow 3s infinite alternate;
+}
 
-    .badge {
-      display: inline-block;
-      padding: 8px 16px;
-      border-radius: 999px;
-      border: 1px solid rgba(255,215,120,0.22);
-      color: var(--gold-light);
-      font-size: 12px;
-      letter-spacing: 2px;
-      text-transform: uppercase;
-      margin-bottom: 18px;
-      background: rgba(255,255,255,0.03);
-    }
+@keyframes logoGlow{
+0%{filter:brightness(1)}
+100%{filter:brightness(1.3)}
+}
 
-    .logo-3d {
-      font-family: 'Orbitron', sans-serif;
-      font-size: clamp(38px, 6.5vw, 84px);
-      line-height: 1;
-      font-weight: 800;
-      letter-spacing: 2px;
-      margin-bottom: 16px;
-      color: #f7d25d;
-      text-transform: uppercase;
-      text-shadow:
-        0 1px 0 #c19116,
-        0 2px 0 #b78612,
-        0 3px 0 #a8760f,
-        0 4px 0 #94660c,
-        0 5px 12px rgba(0,0,0,0.65),
-        0 0 14px rgba(255,215,120,0.55),
-        0 0 34px rgba(255,200,80,0.34),
-        0 0 60px rgba(255,210,120,0.18);
-      animation: logoPulse 3s ease-in-out infinite;
-    }
+.subtitle{
+color:#e7e7e7;
+margin-bottom:20px;
+font-size:17px;
+}
 
-    @keyframes logoPulse {
-      0%, 100% {
-        transform: translateY(0) scale(1);
-        filter: brightness(1);
-      }
-      50% {
-        transform: translateY(-2px) scale(1.01);
-        filter: brightness(1.08);
-      }
-    }
+/* countdown */
 
-    .subtitle {
-      max-width: 720px;
-      margin: 0 auto 24px;
-      color: var(--text);
-      font-size: clamp(15px, 2vw, 18px);
-      line-height: 1.75;
-    }
+.timer{
+display:grid;
+grid-template-columns:repeat(4,1fr);
+gap:15px;
+margin:30px 0;
+}
 
-    .status {
-      display: inline-flex;
-      align-items: center;
-      gap: 10px;
-      margin-bottom: 28px;
-      color: #f7e8b0;
-      font-size: 15px;
-    }
+.time-box{
+background:rgba(255,255,255,.04);
+padding:18px;
+border-radius:15px;
+border:1px solid rgba(255,215,120,.2);
+}
 
-    .pulse-dot {
-      width: 10px;
-      height: 10px;
-      border-radius: 50%;
-      background: var(--gold);
-      box-shadow: 0 0 0 0 rgba(212,175,55,0.7);
-      animation: pulseDot 1.8s infinite;
-    }
+.time-box strong{
+display:block;
+font-size:32px;
+color:#ffd45c;
+font-family:'Orbitron';
+}
 
-    @keyframes pulseDot {
-      0% { box-shadow: 0 0 0 0 rgba(212,175,55,0.75); }
-      70% { box-shadow: 0 0 0 14px rgba(212,175,55,0); }
-      100% { box-shadow: 0 0 0 0 rgba(212,175,55,0); }
-    }
+.time-box span{
+font-size:12px;
+color:#bbb;
+}
 
-    .timer {
-      display: grid;
-      grid-template-columns: repeat(4, minmax(80px, 1fr));
-      gap: 14px;
-      max-width: 760px;
-      margin: 0 auto 28px;
-    }
+/* email form */
 
-    .time-box {
-      padding: 18px 12px;
-      border-radius: 18px;
-      background: rgba(255,255,255,0.04);
-      border: 1px solid rgba(255,215,120,0.14);
-      box-shadow: inset 0 0 0 1px rgba(255,255,255,0.02);
-    }
+.subscribe{
+display:flex;
+gap:10px;
+flex-wrap:wrap;
+justify-content:center;
+margin-top:10px;
+}
 
-    .time-box strong {
-      display: block;
-      font-size: clamp(24px, 4vw, 36px);
-      color: var(--gold-light);
-      margin-bottom: 5px;
-      font-family: 'Orbitron', sans-serif;
-    }
+.subscribe input{
+padding:14px 18px;
+border-radius:30px;
+border:none;
+min-width:250px;
+background:#111;
+color:white;
+}
 
-    .time-box span {
-      font-size: 12px;
-      color: var(--muted);
-      letter-spacing: 1px;
-      text-transform: uppercase;
-    }
+.subscribe button{
+padding:14px 22px;
+border:none;
+border-radius:30px;
+background:#d4af37;
+color:#000;
+font-weight:600;
+cursor:pointer;
+}
 
-    .form-wrap {
-      max-width: 720px;
-      margin: 0 auto 20px;
-    }
+/* instagram */
 
-    .subscribe-form {
-      display: flex;
-      gap: 12px;
-      flex-wrap: wrap;
-      justify-content: center;
-    }
+.actions{
+margin-top:25px;
+}
 
-    .subscribe-form input {
-      flex: 1 1 320px;
-      min-width: 240px;
-      padding: 16px 18px;
-      border-radius: 999px;
-      border: 1px solid rgba(255,215,120,0.18);
-      background: rgba(255,255,255,0.05);
-      color: white;
-      outline: none;
-      font-size: 15px;
-      box-shadow: inset 0 0 0 1px rgba(255,255,255,0.02);
-    }
+.instagram{
+padding:12px 22px;
+border-radius:30px;
+border:1px solid rgba(255,215,120,.3);
+color:#ffd977;
+text-decoration:none;
+display:inline-block;
+}
 
-    .subscribe-form input::placeholder {
-      color: rgba(255,255,255,0.45);
-    }
+.instagram:hover{
+background:rgba(255,255,255,.05);
+}
 
-    .subscribe-form button,
-    .btn {
-      padding: 15px 24px;
-      border-radius: 999px;
-      border: none;
-      cursor: pointer;
-      font-weight: 600;
-      font-size: 15px;
-      transition: .35s ease;
-      text-decoration: none;
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-    }
-
-    .subscribe-form button {
-      background: linear-gradient(135deg, #f7da79, #c9981d);
-      color: #111;
-      min-width: 160px;
-      box-shadow: 0 12px 28px rgba(212,175,55,0.24);
-    }
-
-    .subscribe-form button:hover,
-    .btn:hover {
-      transform: translateY(-3px);
-    }
-
-    .form-note {
-      margin-top: 12px;
-      color: rgba(255,255,255,0.48);
-      font-size: 13px;
-    }
-
-    .action-row {
-      display: flex;
-      gap: 14px;
-      justify-content: center;
-      flex-wrap: wrap;
-      margin-top: 24px;
-    }
-
-    .btn-instagram {
-      background: rgba(255,255,255,0.04);
-      color: #f7e7a8;
-      border: 1px solid rgba(255,215,120,0.18);
-      min-width: 180px;
-    }
-
-    .btn-instagram:hover {
-      background: rgba(255,255,255,0.07);
-      border-color: rgba(255,215,120,0.38);
-    }
-
-    .btn-age {
-      background: linear-gradient(135deg, #f7da79, #c9981d);
-      color: #111;
-      min-width: 180px;
-      box-shadow: 0 12px 28px rgba(212,175,55,0.22);
-    }
-
-    .footer-note {
-      margin-top: 22px;
-      color: rgba(255,255,255,0.5);
-      font-size: 13px;
-    }
-
-    .popup {
-      position: fixed;
-      inset: 0;
-      background: rgba(0,0,0,0.78);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      padding: 20px;
-      z-index: 50;
-      backdrop-filter: blur(8px);
-    }
-
-    .popup.hidden {
-      display: none;
-    }
-
-    .popup-box {
-      width: min(100%, 470px);
-      border-radius: 24px;
-      background: linear-gradient(180deg, rgba(12,12,12,0.96), rgba(0,0,0,0.95));
-      border: 1px solid rgba(255,215,120,0.18);
-      box-shadow: 0 20px 60px rgba(0,0,0,0.55), 0 0 60px rgba(212,175,55,0.08);
-      padding: 34px 28px;
-      text-align: center;
-      color: white;
-    }
-
-    .popup-box h2 {
-      font-family: 'Orbitron', sans-serif;
-      color: var(--gold-light);
-      font-size: 28px;
-      margin-bottom: 12px;
-    }
-
-    .popup-box p {
-      color: var(--text);
-      line-height: 1.7;
-      font-size: 15px;
-      margin-bottom: 22px;
-    }
-
-    .popup-actions {
-      display: flex;
-      gap: 12px;
-      justify-content: center;
-      flex-wrap: wrap;
-    }
-
-    .popup-actions button {
-      min-width: 140px;
-      padding: 14px 20px;
-      border-radius: 999px;
-      border: none;
-      cursor: pointer;
-      font-weight: 600;
-      transition: .3s ease;
-    }
-
-    .btn-enter {
-      background: linear-gradient(135deg, #f7da79, #c9981d);
-      color: #111;
-    }
-
-    .btn-exit {
-      background: rgba(255,255,255,0.08);
-      color: white;
-      border: 1px solid rgba(255,255,255,0.08);
-    }
-
-    .popup-actions button:hover {
-      transform: translateY(-2px);
-    }
-
-    .age-warning {
-      margin-top: 16px;
-      font-size: 12px;
-      color: rgba(255,255,255,0.45);
-    }
-
-    .success-message {
-      display: none;
-      margin-top: 12px;
-      color: #f7e7a8;
-      font-size: 14px;
-    }
-
-    @media (max-width: 768px) {
-      .card {
-        padding: 34px 18px;
-        border-radius: 22px;
-      }
-
-      .timer {
-        grid-template-columns: repeat(2, 1fr);
-      }
-
-      .subscribe-form {
-        flex-direction: column;
-      }
-
-      .subscribe-form input,
-      .subscribe-form button {
-        width: 100%;
-      }
-
-      .logo-3d {
-        letter-spacing: 1px;
-      }
-    }
-  </style>
+</style>
 </head>
+
 <body>
 
-  <div class="popup" id="agePopup">
-    <div class="popup-box">
-      <h2>Age Verification</h2>
-      <p>
-        This website is intended for adults only. Please confirm that you are 21 years of age or older to continue.
-      </p>
-      <div class="popup-actions">
-        <button class="btn-enter" id="enterSite">Yes, I am 21+</button>
-        <button class="btn-exit" id="exitSite">No, Exit</button>
-      </div>
-      <div class="age-warning">
-        By entering, you confirm you meet the legal age requirement in your area.
-      </div>
-    </div>
-  </div>
+<div class="smoke">
+<span></span><span></span><span></span><span></span>
+</div>
 
-  <div class="smoke">
-    <span></span><span></span><span></span><span></span><span></span><span></span>
-  </div>
+<div class="particles">
+<span></span><span></span><span></span><span></span><span></span>
+</div>
 
-  <div class="particles">
-    <span></span><span></span><span></span><span></span><span></span><span></span>
-    <span></span><span></span><span></span><span></span><span></span><span></span>
-  </div>
+<div class="card">
 
-  <main class="page">
-    <section class="card">
-      <div class="badge">Premium Experience Loading</div>
+<div class="logo">Hachi Smoke & Vape</div>
 
-      <h1 class="logo-3d">Hachi Smoke & Vape</h1>
+<p class="subtitle">
+A new premium experience is coming soon.
+</p>
 
-      <p class="subtitle">
-        Something bold is on the way. We are crafting a sleek, elevated digital experience for Hachi Smoke &amp; Vape.
-      </p>
+<div class="timer">
+<div class="time-box">
+<strong id="days">00</strong>
+<span>DAYS</span>
+</div>
 
-      <div class="status">
-        <span class="pulse-dot"></span>
-        <span>Website launching soon</span>
-      </div>
+<div class="time-box">
+<strong id="hours">00</strong>
+<span>HOURS</span>
+</div>
 
-      <div class="timer">
-        <div class="time-box">
-          <strong id="days">00</strong>
-          <span>Days</span>
-        </div>
-        <div class="time-box">
-          <strong id="hours">00</strong>
-          <span>Hours</span>
-        </div>
-        <div class="time-box">
-          <strong id="minutes">00</strong>
-          <span>Minutes</span>
-        </div>
-        <div class="time-box">
-          <strong id="seconds">00</strong>
-          <span>Seconds</span>
-        </div>
-      </div>
+<div class="time-box">
+<strong id="minutes">00</strong>
+<span>MINUTES</span>
+</div>
 
-      <div class="form-wrap">
-        <form class="subscribe-form" id="subscribeForm">
-          <input type="email" id="emailInput" placeholder="Enter your email for updates" required>
-          <button type="submit">Notify Me</button>
-        </form>
-        <div class="success-message" id="successMessage">Thanks! Your email has been noted for updates.</div>
-        <div class="form-note">This demo form stores nothing yet. Later we can connect it to Formspree or another email service.</div>
-      </div>
+<div class="time-box">
+<strong id="seconds">00</strong>
+<span>SECONDS</span>
+</div>
+</div>
 
-      <div class="action-row">
-        <a class="btn btn-instagram" href="https://instagram.com/" target="_blank">Instagram</a>
-        <button class="btn btn-age" id="openAgePopup">21+ Only</button>
-      </div>
+<div class="subscribe">
+<input type="email" placeholder="Enter your email for updates">
+<button>Notify Me</button>
+</div>
 
-      <div class="footer-note">
-        Stay tuned for the official launch
-      </div>
-    </section>
-  </main>
+<div class="actions">
+<a class="instagram" href="https://instagram.com/" target="_blank">Instagram</a>
+</div>
 
-  <script>
-    // Countdown timer
-    const launchDate = new Date("2026-05-01T00:00:00").getTime();
+</div>
 
-    function updateCountdown() {
-      const now = new Date().getTime();
-      const distance = launchDate - now;
+<script>
 
-      if (distance <= 0) {
-        document.getElementById("days").textContent = "00";
-        document.getElementById("hours").textContent = "00";
-        document.getElementById("minutes").textContent = "00";
-        document.getElementById("seconds").textContent = "00";
-        return;
-      }
+const launchDate = new Date("2026-05-01T00:00:00").getTime();
 
-      const days = Math.floor(distance / (1000 * 60 * 60 * 24));
-      const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-      const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
-      const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+function countdown(){
 
-      document.getElementById("days").textContent = String(days).padStart(2, "0");
-      document.getElementById("hours").textContent = String(hours).padStart(2, "0");
-      document.getElementById("minutes").textContent = String(minutes).padStart(2, "0");
-      document.getElementById("seconds").textContent = String(seconds).padStart(2, "0");
-    }
+const now = new Date().getTime();
+const distance = launchDate - now;
 
-    updateCountdown();
-    setInterval(updateCountdown, 1000);
+const days = Math.floor(distance/(1000*60*60*24));
+const hours = Math.floor((distance%(1000*60*60*24))/(1000*60*60));
+const minutes = Math.floor((distance%(1000*60*60))/(1000*60));
+const seconds = Math.floor((distance%(1000*60))/1000);
 
-    // Demo email form
-    const subscribeForm = document.getElementById("subscribeForm");
-    const successMessage = document.getElementById("successMessage");
-    const emailInput = document.getElementById("emailInput");
+document.getElementById("days").innerHTML = days;
+document.getElementById("hours").innerHTML = hours;
+document.getElementById("minutes").innerHTML = minutes;
+document.getElementById("seconds").innerHTML = seconds;
 
-    subscribeForm.addEventListener("submit", function(e) {
-      e.preventDefault();
-      if (emailInput.value.trim() !== "") {
-        successMessage.style.display = "block";
-        subscribeForm.reset();
-      }
-    });
+}
 
-    // Age verification popup
-    const agePopup = document.getElementById("agePopup");
-    const enterSite = document.getElementById("enterSite");
-    const exitSite = document.getElementById("exitSite");
-    const openAgePopup = document.getElementById("openAgePopup");
+setInterval(countdown,1000);
 
-    enterSite.addEventListener("click", function() {
-      agePopup.classList.add("hidden");
-      localStorage.setItem("hachiAgeVerified", "yes");
-    });
+</script>
 
-    exitSite.addEventListener("click", function() {
-      window.location.href = "https://www.google.com";
-    });
-
-    openAgePopup.addEventListener("click", function() {
-      agePopup.classList.remove("hidden");
-    });
-
-    if (localStorage.getItem("hachiAgeVerified") === "yes") {
-      agePopup.classList.add("hidden");
-    }
-  </script>
 </body>
 </html>
